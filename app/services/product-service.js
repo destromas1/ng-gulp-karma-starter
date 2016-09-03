@@ -1,5 +1,5 @@
 'use strict';
-app.factory('patternsContext', ['$http', function ($http) {
+app.factory('productService', ['$http', function ($http) {
 
     var api = 'http://localhost:9001/api/product/';
 
