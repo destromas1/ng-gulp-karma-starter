@@ -10,7 +10,16 @@ app.factory('productService', ['$http', function ($http) {
         });
     };
 
+    var post = function (product) {
+        return $http({
+            url: api,
+            method: 'POST',
+            data: product
+        });
+    };
+
     return {
-        get: getAll
+        get: getAll,
+        save: post
     };
 }]);

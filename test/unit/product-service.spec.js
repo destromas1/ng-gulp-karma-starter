@@ -5,7 +5,6 @@ describe("productService", function () {
   beforeEach(module('app'));
 
   var factory, httpBackend;
-
   beforeEach(inject(function ($httpBackend, productService) {
     httpBackend = $httpBackend;
     factory = productService;
@@ -13,7 +12,7 @@ describe("productService", function () {
 
   var products = [
     {id: 1, name: "Prod1" },
-    { id: 2, name: "Prod2" }
+    {id: 2, name: "Prod2" }
   ];
   
   it('should fetch product', function () {
@@ -21,17 +20,23 @@ describe("productService", function () {
       .respond(products);
     
      factory.get().then(function (data) {
-         console.log("----------------------------------------------");
-         console.log(data);
-         console.log("----------------------------------------------");
          expect(data.data).toEqual(products);
      });
 
      httpBackend.flush();
   });
-    
+
+  it('should post product', function () {
+
+    httpBackend.expectPOST('http://localhost:9001/api/product/')
+      .respond(200, { success: true });
+
+    factory.save({id: 3, name: "Prod3" })
+      .then(function (resp) {
+        expect(resp.data.success).toEqual(true);
+      });
+
+    httpBackend.flush();
+  });
 
 });
-
-
-
