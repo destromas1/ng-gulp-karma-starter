@@ -17,6 +17,8 @@ module.exports = function (config) {
 
     port: 3001,
 
+    reporters : ['progress', 'coverage'],
+
     browsers: ['Chrome']
   });
 };
